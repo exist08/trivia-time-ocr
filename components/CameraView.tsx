@@ -37,21 +37,33 @@ const CameraView: React.FC<CameraViewProps> = ({ onCapture, isLoading }) => {
     };
   }, []);
 
-  const handleCapture = () => {
-    if (videoRef.current && canvasRef.current) {
-      const canvas = canvasRef.current;
-      const video = videoRef.current;
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
-        const base64 = dataUrl.split(',')[1];
-        onCapture(base64);
+  // Continuous Capture Logic
+  useEffect(() => {
+    if (isLoading || error) return;
+
+    const captureFrame = () => {
+      if (videoRef.current && canvasRef.current && !isLoading) {
+        const canvas = canvasRef.current;
+        const video = videoRef.current;
+        
+        // Use a smaller canvas size for faster OCR processing
+        canvas.width = 640;
+        canvas.height = 360;
+        
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+          const base64 = dataUrl.split(',')[1];
+          onCapture(base64);
+        }
       }
-    }
-  };
+    };
+
+    // Auto-capture every 1.5 seconds if not busy
+    const intervalId = setInterval(captureFrame, 1500);
+    return () => clearInterval(intervalId);
+  }, [isLoading, error, onCapture]);
 
   if (error) {
     return (
@@ -68,63 +80,46 @@ const CameraView: React.FC<CameraViewProps> = ({ onCapture, isLoading }) => {
   }
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto overflow-hidden rounded-2xl border-2 border-gray-700 bg-black aspect-[16/9]">
+    <div className="relative w-full max-w-2xl mx-auto overflow-hidden rounded-2xl border-2 border-slate-700 bg-black aspect-[16/9]">
       <video
         ref={videoRef}
         autoPlay
         playsInline
         muted
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover grayscale contrast-125"
       />
       
-      {/* Scanning HUD */}
-      <div className="absolute inset-0 pointer-events-none border-[20px] border-black/20">
+      {/* Scanning HUD Overlay */}
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-4/5 h-1/3 border-2 border-blue-500/50 rounded-lg relative overflow-hidden">
-            <div className="absolute inset-0 bg-blue-500/10 animate-pulse" />
-            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-blue-400" />
-            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-blue-400" />
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-blue-400" />
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-blue-400" />
+          <div className="w-[85%] h-[40%] border border-emerald-500/30 rounded-lg relative">
+            {/* Corners */}
+            <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-emerald-400" />
+            <div className="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-emerald-400" />
+            <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-emerald-400" />
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-emerald-400" />
             
-            {/* Animated Scanning Line */}
-            <div className="absolute w-full h-0.5 bg-blue-400/80 shadow-[0_0_15px_rgba(96,165,250,0.8)] animate-[scan_2s_linear_infinite]" />
+            {/* Animated Laser Line */}
+            <div className="absolute w-full h-0.5 bg-emerald-400/60 shadow-[0_0_15px_rgba(52,211,153,0.8)] animate-[scan_2s_ease-in-out_infinite]" />
+            
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 flex items-center gap-2">
+              <div className={`w-2 h-2 rounded-full ${isLoading ? 'bg-emerald-400 animate-ping' : 'bg-slate-500'}`} />
+              <span className="text-[10px] font-mono text-emerald-400/80 tracking-widest uppercase">
+                {isLoading ? 'Processing' : 'Live Feed'}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
-        <button
-          onClick={handleCapture}
-          disabled={isLoading}
-          className={`
-            flex items-center gap-2 px-8 py-4 rounded-full font-bold text-lg shadow-2xl transition-all
-            ${isLoading ? 'bg-gray-700 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500 active:scale-95'}
-          `}
-        >
-          {isLoading ? (
-            <>
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              Analyzing...
-            </>
-          ) : (
-            <>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Solve Question
-            </>
-          )}
-        </button>
       </div>
 
       <canvas ref={canvasRef} className="hidden" />
 
       <style>{`
         @keyframes scan {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(100px); }
+          0% { top: 0%; opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { top: 100%; opacity: 0; }
         }
       `}</style>
     </div>
