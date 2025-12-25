@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import CameraView from './components/CameraView';
 import { analyzeQuestionImage } from './services/geminiService';
 
@@ -9,104 +9,96 @@ interface Result {
 }
 
 const App: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
-  const [lastScanEmpty, setLastScanEmpty] = useState(false);
+  const [status, setStatus] = useState<string>("Align Question");
+
+  // Track last found question to prevent flickering if OCR output changes slightly
+  const lastQuestionRef = useRef<string | null>(null);
 
   const handleCapture = useCallback(async (base64: string) => {
-    setIsLoading(true);
+    setIsProcessing(true);
+    setStatus("Reading...");
     try {
       const analysis = await analyzeQuestionImage(base64);
       if (analysis) {
-        setResult(analysis);
-        setLastScanEmpty(false);
+        if (analysis.identifiedQuestion !== lastQuestionRef.current) {
+          setResult(analysis);
+          lastQuestionRef.current = analysis.identifiedQuestion;
+        }
+        setStatus("Match Found");
       } else {
-        setLastScanEmpty(true);
+        setStatus("Scanning...");
       }
     } catch (err) {
-      console.error("Auto-scan error:", err);
+      console.error("Scan error:", err);
     } finally {
-      setIsLoading(false);
+      setIsProcessing(false);
     }
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-slate-100 flex flex-col p-4 md:p-8">
+    <div className="min-h-screen bg-[#020202] text-slate-100 flex flex-col p-4 md:p-8">
       {/* Header */}
       <header className="max-w-4xl mx-auto w-full mb-6 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-          <span className="text-[10px] font-mono tracking-[0.3em] text-emerald-500 uppercase">Live Detection Active</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-4">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[10px] font-mono font-bold text-emerald-500 tracking-widest uppercase">{status}</span>
         </div>
-        <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-1">
-          Instant<span className="text-emerald-500">Trivia</span>
+        <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-none mb-1">
+          TRIVIA<span className="text-emerald-500">BOLT</span>
         </h1>
-        <p className="text-slate-500 text-sm md:text-base font-medium">
-          Detection engine automatically identifying football history.
-        </p>
+        <p className="text-slate-500 text-sm font-medium">Instant Football Trivia Recognition</p>
       </header>
 
       {/* Main Content */}
       <main className="max-w-3xl mx-auto w-full space-y-6">
-        
-        {/* Camera Section */}
-        <section className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-[2rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-          <div className="relative bg-slate-900/40 rounded-3xl p-3 md:p-4 border border-slate-800/50 backdrop-blur-sm overflow-hidden">
-            <CameraView onCapture={handleCapture} isLoading={isLoading} />
-          </div>
-        </section>
 
-        {/* Results Section - Persistent Area */}
-        <section className="min-h-[160px] flex flex-col items-center justify-center">
+        {/* Camera Display */}
+        <div className="relative">
+          <div className="absolute -inset-2 bg-emerald-500/5 rounded-[2.5rem] blur-xl"></div>
+          <div className="relative bg-slate-900/30 rounded-3xl p-2 border border-slate-800/40 backdrop-blur-md">
+            <CameraView onCapture={handleCapture} isProcessing={isProcessing} />
+          </div>
+        </div>
+
+        {/* Real-time Result Area */}
+        <div className="min-h-[140px] flex flex-col items-center justify-center">
           {!result ? (
-            <div className="text-center space-y-3 animate-pulse">
-              <div className="p-4 rounded-full bg-slate-900/50 border border-slate-800 inline-block">
-                <svg className="w-6 h-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <div className="flex flex-col items-center gap-4 text-slate-600 animate-pulse">
+              <div className="w-12 h-12 rounded-full border-2 border-dashed border-slate-800 flex items-center justify-center">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
               </div>
-              <p className="text-slate-600 font-mono text-xs uppercase tracking-widest">
-                {lastScanEmpty ? "Adjusting Focus..." : "Align Question to Scan"}
-              </p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em]">Waiting for text in region</p>
             </div>
           ) : (
-            <div className="w-full animate-in fade-in zoom-in-95 duration-500">
-              <div className="bg-slate-900/80 border border-emerald-500/20 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
-                {/* Background Decor */}
-                <div className="absolute top-0 right-0 p-4 opacity-5">
-                   <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
-                     <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                   </svg>
+            <div className="w-full animate-in fade-in slide-in-from-bottom-2 duration-300">
+              <div className="bg-slate-900/60 border-l-4 border-emerald-500 rounded-r-2xl p-6 shadow-xl flex flex-col md:flex-row gap-6 items-center">
+                <div className="flex-1">
+                  <h4 className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Detected Question</h4>
+                  <p className="text-base md:text-lg font-bold text-slate-200 leading-tight">
+                    {result.identifiedQuestion}
+                  </p>
                 </div>
-
-                <div className="flex flex-col md:flex-row gap-6 items-center">
-                  <div className="flex-1 text-center md:text-left">
-                    <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-3">Detected Question</h3>
-                    <p className="text-lg md:text-xl font-semibold text-slate-200 leading-tight">
-                      {result.identifiedQuestion}
-                    </p>
-                  </div>
-                  
-                  <div className="flex-shrink-0 flex flex-col items-center gap-2">
-                    <h3 className="text-[10px] font-bold text-emerald-500 uppercase tracking-[0.2em]">Verified Answer</h3>
-                    <div className="bg-emerald-600 text-white px-8 py-3 rounded-xl text-2xl font-black shadow-[0_0_20px_rgba(16,185,129,0.3)] border-t border-emerald-400/30">
-                      {result.officialAnswer}
-                    </div>
-                  </div>
+                <div className="bg-emerald-600 text-white px-8 py-4 rounded-xl shadow-lg shadow-emerald-500/20 text-center">
+                  <span className="block text-[9px] font-black uppercase tracking-widest opacity-70 mb-1">Answer</span>
+                  <span className="text-2xl font-black">{result.officialAnswer}</span>
                 </div>
               </div>
             </div>
           )}
-        </section>
+        </div>
       </main>
 
-      <footer className="mt-auto py-8 text-center">
-        <div className="inline-flex items-center gap-3 px-4 py-2 bg-slate-900/50 rounded-full border border-slate-800/50 text-[10px] text-slate-500 font-mono uppercase tracking-widest">
-          <span>Engine: Local Tesseract v5</span>
-          <span className="w-1 h-1 rounded-full bg-slate-700" />
-          <span>Status: Autonomous</span>
+      <footer className="mt-auto py-6 border-t border-slate-900/50 flex flex-col items-center gap-2">
+        <div className="flex gap-4 text-[10px] font-mono text-slate-700 uppercase tracking-widest">
+          <span>OCR: Active</span>
+          <span>Buffer: Off</span>
+          <span>Latency: Low</span>
         </div>
+        <p className="text-slate-800 text-[10px]">LOCAL DATABASE SCANNER // REAL-TIME</p>
       </footer>
     </div>
   );

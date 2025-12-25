@@ -2,14 +2,15 @@
 import React, { useRef, useEffect, useState } from 'react';
 
 interface CameraViewProps {
-  onCapture: (base64: string) => void;
-  isLoading: boolean;
+  onCapture: (base64: string) => Promise<void>;
+  isProcessing: boolean;
 }
 
-const CameraView: React.FC<CameraViewProps> = ({ onCapture, isLoading }) => {
+const CameraView: React.FC<CameraViewProps> = ({ onCapture, isProcessing }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [error, setError] = useState<string | null>(null);
+  const isScanningRef = useRef(false);
 
   useEffect(() => {
     let stream: MediaStream | null = null;
@@ -17,13 +18,18 @@ const CameraView: React.FC<CameraViewProps> = ({ onCapture, isLoading }) => {
     const startCamera = async () => {
       try {
         stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } }
+          video: {
+            facingMode: 'environment',
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+            frameRate: { ideal: 30 }
+          }
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
       } catch (err) {
-        setError("Could not access camera. Please check permissions.");
+        setError("Camera access denied.");
         console.error(err);
       }
     };
@@ -37,44 +43,61 @@ const CameraView: React.FC<CameraViewProps> = ({ onCapture, isLoading }) => {
     };
   }, []);
 
-  // Continuous Capture Logic
+  /**
+   * Recursive scanning loop. 
+   * Triggers the next scan as soon as the previous one finishes.
+   */
   useEffect(() => {
-    if (isLoading || error) return;
+    let active = true;
 
-    const captureFrame = () => {
-      if (videoRef.current && canvasRef.current && !isLoading) {
+    const runScan = async () => {
+      if (!active || error) return;
+
+      if (!isProcessing && videoRef.current && canvasRef.current && videoRef.current.readyState === 4) {
         const canvas = canvasRef.current;
         const video = videoRef.current;
-        
-        // Use a smaller canvas size for faster OCR processing
-        canvas.width = 640;
-        canvas.height = 360;
-        
+
+        // ROI (Region of Interest) calculation based on HUD box
+        // We only crop the center 80% width, 40% height area to speed up Tesseract
+        const cropX = video.videoWidth * 0.1;
+        const cropY = video.videoHeight * 0.3;
+        const cropW = video.videoWidth * 0.8;
+        const cropH = video.videoHeight * 0.4;
+
+        canvas.width = cropW;
+        canvas.height = cropH;
+
         const ctx = canvas.getContext('2d');
         if (ctx) {
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+          // Boost contrast and grayscale for OCR accuracy
+          ctx.filter = 'grayscale(1) contrast(1.5) brightness(1.2)';
+          ctx.drawImage(video, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
           const base64 = dataUrl.split(',')[1];
-          onCapture(base64);
+
+          await onCapture(base64);
         }
+      }
+
+      // Short delay to prevent CPU choking, but fast enough for "instant" feel
+      if (active) {
+        setTimeout(runScan, 100);
       }
     };
 
-    // Auto-capture every 1.5 seconds if not busy
-    const intervalId = setInterval(captureFrame, 1500);
-    return () => clearInterval(intervalId);
-  }, [isLoading, error, onCapture]);
+    runScan();
+
+    return () => {
+      active = false;
+    };
+  }, [error, isProcessing, onCapture]);
 
   if (error) {
     return (
       <div className="flex flex-col items-center justify-center p-8 bg-red-900/20 border border-red-500 rounded-xl">
         <p className="text-red-400 mb-4">{error}</p>
-        <button 
-          onClick={() => window.location.reload()}
-          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg"
-        >
-          Try Again
-        </button>
+        <button onClick={() => window.location.reload()} className="bg-red-600 px-4 py-2 rounded-lg">Retry</button>
       </div>
     );
   }
@@ -86,26 +109,27 @@ const CameraView: React.FC<CameraViewProps> = ({ onCapture, isLoading }) => {
         autoPlay
         playsInline
         muted
-        className="w-full h-full object-cover grayscale contrast-125"
+        className="w-full h-full object-cover"
       />
-      
-      {/* Scanning HUD Overlay */}
+
+      {/* HUD Overlay */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[85%] h-[40%] border border-emerald-500/30 rounded-lg relative">
-            {/* Corners */}
-            <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-emerald-400" />
-            <div className="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-emerald-400" />
-            <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-emerald-400" />
-            <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-emerald-400" />
-            
-            {/* Animated Laser Line */}
-            <div className="absolute w-full h-0.5 bg-emerald-400/60 shadow-[0_0_15px_rgba(52,211,153,0.8)] animate-[scan_2s_ease-in-out_infinite]" />
-            
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${isLoading ? 'bg-emerald-400 animate-ping' : 'bg-slate-500'}`} />
-              <span className="text-[10px] font-mono text-emerald-400/80 tracking-widest uppercase">
-                {isLoading ? 'Processing' : 'Live Feed'}
+          {/* Target Box - Only text inside this box is scanned */}
+          <div className="w-[85%] h-[40%] border-2 border-emerald-500/40 rounded-lg relative overflow-hidden backdrop-blur-[1px]">
+            {/* Corner Markers */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-emerald-400" />
+            <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-emerald-400" />
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-emerald-400" />
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-emerald-400" />
+
+            {/* Active Scanning Laser */}
+            <div className="absolute w-full h-1 bg-emerald-400/80 shadow-[0_0_20px_#10b981] animate-[laser_1.5s_linear_infinite]" />
+
+            {/* Status Text */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-[10px] font-mono text-emerald-400 tracking-[0.5em] uppercase bg-black/40 px-3 py-1 rounded">
+                Scanning Region
               </span>
             </div>
           </div>
@@ -115,11 +139,9 @@ const CameraView: React.FC<CameraViewProps> = ({ onCapture, isLoading }) => {
       <canvas ref={canvasRef} className="hidden" />
 
       <style>{`
-        @keyframes scan {
-          0% { top: 0%; opacity: 0; }
-          20% { opacity: 1; }
-          80% { opacity: 1; }
-          100% { top: 100%; opacity: 0; }
+        @keyframes laser {
+          0% { top: -10%; }
+          100% { top: 110%; }
         }
       `}</style>
     </div>
