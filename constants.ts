@@ -4,197 +4,967 @@ export interface QuestionData {
   answer: string;
 }
 
+
+
 export const FOOTBALL_TRIVIA: QuestionData[] = [
-  { "question": "Which national team did Marcello Lippi go on to manage after his contract expired in 2004?", "answer": "Italy" },
-  { "question": "In which year did Juventus sign Emerson from AS Roma?", "answer": "2004" },
-  { "question": "Which of these goalkeepers did Juventus sign for a then world-record fee for a goalkeeper?", "answer": "Gianluigi Buffon" },
-  { "question": "Which team did Pavel Nedved make his debut for Juventus against?", "answer": "Venezia" },
-  { "question": "Which club did Juventus sign Patrick Vieira from?", "answer": "Arsenal" },
-  { "question": "Who scored the winning penalty for Juventus in the 2003 Supercoppa Italiana?", "answer": "Ciro Ferrara" },
-  { "question": "In which year did Juventus win the Serie A title under Marcello Lippi for the first time in the 2000s?", "answer": "2002" },
-  { "question": "Which of these players retired at the end of the 2003-2004 season?", "answer": "Antonio Conte" },
-  { "question": "Who did Juventus beat on the final matchday to win the 2001-2002 Serie A title?", "answer": "Udinese" },
-  { "question": "What number did Gianluca Zambrotta wear for Juventus between 2000 and 2006?", "answer": "19" },
-  { "question": "Who did Juventus beat in the semi-finals of the 2003 UEFA Champions League to reach the finals?", "answer": "Real Madrid" },
-  { "question": "Which team did Edgar Davids leave Juventus on loan for in the 2004 Winter window?", "answer": "FC Barcelona" },
-  { "question": "What number did Alessandro Del Piero wear for Juventus between 2001 and 2005?", "answer": "10" },
-  { "question": "By how many points did Juventus win the 2001-2002 Serie A title?", "answer": "1" },
-  { "question": "Which player joined Juventus from Parma alongside Gianluigi Buffon in 2001?", "answer": "Lilian Thuram" },
-  { "question": "Who was the manager of Juventus for the 2004-2005 season?", "answer": "Fabio Capello" },
-  { "question": "Which country is Pavel Nedved from?", "answer": "Czech Republic" },
-  { "question": "What year did Zinedine Zidane leave Juventus to join Real Madrid?", "answer": "2001" },
-  { "question": "In which of these years did Juventus reach the finals of the Coppa Italia?", "answer": "2004" },
-  { "question": "Which team did Alessandro Del Piero score his 100th goal for Juventus against?", "answer": "Venezia" },
-  { "question": "Which goalkeeper was replaced by Gianluigi Buffon at Juventus in 2001?", "answer": "Edwin van der Sar" },
-  { "question": "How many goals did David Trezeguet score in the 2001-2002 Seria A season?", "answer": "24" },
-  { "question": "What shirt number was Gianluigi Buffon given when he joined Juventus?", "answer": "1" },
-  { "question": "Which club did Juventus sign Lilian Thuram from in 2001?", "answer": "Parma" },
-  { "question": "In which year did Juventus sign Gianluigi Buffon?", "answer": "2001" },
-  { "question": "How many goals did Alessandro Del Piero score for Juventus in the 2002-2003 season?", "answer": "21" },
-  { "question": "Who was Juventus top goalscorer in the 2000-2001 season?", "answer": "Filippo Inzaghi" },
-  { "question": "Who scored the equaliser for Juventus in the 2003 Supercoppa Italiana?", "answer": "David Trezeguet" },
-  { "question": "Who was the top goalscorer in the 2001-2002 Serie A season?", "answer": "David Trezeguet" },
-  { "question": "What was the home stadium of Juventus before they moved in 2006?", "answer": "Stadio Delle Alpi" },
-  { "question": "In which year did Juventus sign Pavel Nedved?", "answer": "2001" },
-  { "question": "Who scored the winner in the 2002 Supercoppa Italiana?", "answer": "Alessandro Del Piero" },
-  { "question": "Which team did Giorgio Chiellini play for before making his debut for Juventus?", "answer": "Fiorentina" },
-  { "question": "Who was Juventus’ manager after Marcello Lippi in 2004?", "answer": "Fabio Capello" },
-  { "question": "What number did Pavel Nedved wear for Juventus?", "answer": "11" },
-  { "question": "Who was Juventus top goalscorer in all competitions in the 2004-2005 season?", "answer": "Alessandro Del Piero" },
-  { "question": "Which club did Juventus sign Gianluca Zambrotta from?", "answer": "Bari" },
-  { "question": "Who did Juventus face in the 2002 Supercoppa Italiana?", "answer": "Parma" },
-  { "question": "Which team did Juventus sign David Trezeguet from?", "answer": "AS Monaco" },
-  { "question": "Which of these teams won the 2002-2003 Serie A season?", "answer": "Juventus" },
-  { "question": "Who was Juventus’ manager in the 2000-2001 season?", "answer": "Carlo Ancelotti" },
-  { "question": "What position did Giorgio Chiellini play for Juventus?", "answer": "Defender" },
-  { "question": "What number did David Trezeguet wear for Juventus?", "answer": "17" },
-  { "question": "How many goals did Pavel Nedved score for Juventus in the 2002-2003 season?", "answer": "14" },
-  { "question": "How many Serie A titles did Marcello Lippi in his second spell in charge of Juventus?", "answer": "2" },
-  { "question": "Who wore the number 21 for Juventus?", "answer": "Lilian Thuram" },
-  { "question": "Which player joined Juventus from Ajax in 2004?", "answer": "Zlatan Ibrahimovic" },
-  { "question": "What number did Giorgio Chiellini wear for Juventus?", "answer": "3" },
-  { "question": "How many goals did David Trezeguet score in his first season for Juventus?", "answer": "15" },
-  { "question": "Which Juventus player won the Ballon d’Or in 2003?", "answer": "Pavel Nedved" },
-  { "question": "What was the final score in the 2005 DFB-Pokal final?", "answer": "FC Bayern Munchen 2 – 1 FC Schalke 04" },
-  { "question": "What year did Lucio join FC Bayern Munchen?", "answer": "2004" },
-  { "question": "Which team did Toni Kroos make his debut for FC Bayern Munchen against?", "answer": "FC Energie Cottbus" },
-  { "question": "Who did FC Bayern Munchen face in the 2003 DFB-Pokal final?", "answer": "1. FC Kaiserslautern" },
-  { "question": "Who did Roy Makaay score the fastest UEFA Champions League goal against?", "answer": "Real Madrid" },
-  { "question": "Which club did FC Bayern Munchen sign Bixente Lizarazu from in 1997?", "answer": "Athletic Club" },
-  { "question": "Who did FC Bayern Munchen face in the 2001 UEFA Champions League final?", "answer": "Valencia CF" },
-  { "question": "Who did FC Bayern Munchen face in the 2006 DFB-Pokal final?", "answer": "Eintracht Frankfurt" },
-  { "question": "Which team did Philipp Lahm score his first FC Bayern Munchen goal against?", "answer": "VfL Bochum" },
-  { "question": "How many Bundesliga appearances did Lothar Matthaus make for FC Bayern Munchen?", "answer": "302" },
-  { "question": "Which team did Bixente Lizarazu leave FC Bayern Munchen for?", "answer": "Olympique de Marseille" },
-  { "question": "Which team did FC Bayern Munchen sign Paulo Sergio from in 1999?", "answer": "AS Roma" },
-  { "question": "Which team did FC Bayern Munchen share the Allianz Arena with back in 2005?", "answer": "TSV 1860 Munchen" },
-  { "question": "Which team did Philipp Lahm make his FC Bayern Munchen debut against?", "answer": "RC Lens" },
-  { "question": "Which club did FC Bayern Munchen sign Ze Roberto from in 2002?", "answer": "Bayer 04 Leverkusen" },
-  { "question": "How many appearances did Bixente Lizarazu make for FC Bayern Munchen?", "answer": "273" },
-  { "question": "Who was known as “Der Titan”?", "answer": "Oliver Kahn" },
-  { "question": "Who did FC Bayern Munchen sign from SV Werder Bremen in 2001?", "answer": "Claudio Pizarro" },
-  { "question": "What number did Franck Ribery wear for FC Bayern Munchen?", "answer": "7" },
-  { "question": "By how many points did FC Bayern Munchen win the 2000-2001 Bundesliga title by?", "answer": "1" },
-  { "question": "Who did FC Bayern Munchen face in the 2001 Intercontinental Cup?", "answer": "Boca Juniors" },
-  { "question": "What number did Bastian Schweinsteiger wear for FC Bayern Munchen?", "answer": "31" },
-  { "question": "Who did FC Bayern Munchen face in the final of the 2001 UEFA Super Cup?", "answer": "Liverpool" },
-  { "question": "How many appearances did Oliver Kahn make for FC Bayern Munchen in the Bundesliga before retiring?", "answer": "429" },
-  { "question": "Where was the 2001 UEFA Champions League final held?", "answer": "San Siro Stadium" },
-  { "question": "Which year did FC Bayern Munchen move to the Allianz Arena?", "answer": "2005" },
-  { "question": "What is Roy Makaay’s nationality?", "answer": "Netherlands" },
-  { "question": "Who as FC Bayern Munchen’s goalkeeper in the 2001 UEFA Champions League final?", "answer": "Oliver Kahn" },
-  { "question": "Which team did FC Bayern Munchen finish ahead of to win the 2000-2001 Bundesliga title?", "answer": "FC Schalke 04" },
-  { "question": "How long did it take for the fastest UEFA Champions League goal to be scored?", "answer": "10.12 seconds" },
-  { "question": "What was the score of the penalty shootout in the finals of the 2001 UEFA Champions League?", "answer": "FC Bayern Munchen 5 – 4 Valencia CF" },
-  { "question": "What year did Roy Makaay join FC Bayern Munchen?", "answer": "2003" },
-  { "question": "Which of these numbers did Bixente Lizarazu not wear for FC Bayern Munchen?", "answer": "4" },
-  { "question": "Who was FC Bayern Munchen’s top scorer in the 2004-2005 Bundesliga season?", "answer": "Roy Makaay" },
-  { "question": "In which of these years did FC Bayern Munchen win the UEFA Champions League?", "answer": "2001" },
-  { "question": "How many goals did Roy Makaay score in first season for FC Bayern Munchen?", "answer": "31" },
-  { "question": "Which of these number did Lothar Matthaus not wear for FC Bayern Munchen between 1992 and 2000?", "answer": "11" },
-  { "question": "Which of these season’s did FC Bayern Munchen achieve the domestic double?", "answer": "2004-2005" },
-  { "question": "How many points did FC Bayern Munchen finish the 2004-2005 Bundesliga season with?", "answer": "77" },
-  { "question": "How many goals did Roy Makaay score for FC Bayern Munchen in all competitions?", "answer": "103" },
-  { "question": "Who did FC Bayern Munchen draw with on the final matchday of the 2000-2001 Bundeesliga season to win the title?", "answer": "Hamburger SV" },
-  { "question": "Which of these FC Bayern Munchen players retired at the end of the 2007-2008 season?", "answer": "Oliver Kahn" },
-  { "question": "What stadium did FC Bayern Munchen play their home games in before they moved to the Allianz Arena?", "answer": "Munich Olympiastadion" },
-  { "question": "Which team did FC Bayern Munchen sign Miroslav Klose from?", "answer": "Sv Werder Bremen" },
-  { "question": "Who scored FC Bayern Munchen’s only goal in the 2006 DFB-Pokal final?", "answer": "Claudio Pizarro" },
-  { "question": "Which team did FC Bayern Munchen sign Roy Makaay from?", "answer": "RC Deportivo" },
-  { "question": "Who scored FC Bayern Munchen’s first goal in the 2005 DFB-Pokal final?", "answer": "Roy Makaay" },
-  { "question": "Which of these players scored in the 2003 DFB-Pokal final?", "answer": "Claudio Pizarro" },
-  { "question": "How many appearances did Claudio Pizarro make for FC Bayern Munchen between 2001 and 2007?", "answer": "256" },
-  { "question": "Which FC Bayern Munchen player joined the club from 1. FC Koln in 2006?", "answer": "Lukas Podolski" },
-  { "question": "Which player was famously known as “O Fenomeno”?", "answer": "Ronaldo Nazario" },
-  { "question": "Which team did Real Madrid sign Luis Figo from?", "answer": "FC Barcelona" },
-  { "question": "Which of these players did not score in the 2003 Spanish Super Cup second leg?", "answer": "Luis Figo" },
-  { "question": "What number did Zinedine Zidane wear at Real Madrid?", "answer": "5" },
-  { "question": "Which of these players came from Real Madrid’s academy?", "answer": "Iker Casillas" },
-  { "question": "What is the “Galacticos” transfer policy about?", "answer": "Signing expensive, world class players" },
-  { "question": "By how many poins did Real Madrid win the 2002-2003 LALIGA EA SPORTS title?", "answer": "2" },
-  { "question": "What year did Michael Owen join Real Madrid?", "answer": "2004" },
-  { "question": "What year did Luis Figo leave Real Madrid?", "answer": "2005" },
-  { "question": "Who was Real Madrid’s top scorer in the 2001-2002 season in LALIGA EA SPORTS?", "answer": "Fernando Morientes" },
-  { "question": "How many goals did David Beckham score for Real Madrid?", "answer": "20" },
-  { "question": "Which team did Real Madrid sign Zinedine Zidane from?", "answer": "Juventus" },
-  { "question": "How many goals did Zinedine Zidane score in the 2002-2003 season for Real Madrid?", "answer": "12" },
-  { "question": "Which player joined Real Madrid from Juventus?", "answer": "Zinedine Zidane" },
-  { "question": "In which of these seasons did Real Madrid win their 29th LALIGA EA SPORTS title?", "answer": "2002-2003" },
-  { "question": "How many points did Real Madrid achieve in the 2000-2001 LALIGA EA SPORTS season?", "answer": "80" },
-  { "question": "Which club did Real Madrid defeat in the 2002 UEFA Champions League final?", "answer": "Bayer Leverkusen" },
-  { "question": "Who replaced Vicente del Bosque as Real Madrid’s manager in 2003?", "answer": "Carlos Queiroz" },
-  { "question": "Who did Real Madrid face in the finals of the 2002 Intercontinental Cup?", "answer": "Olimpia" },
-  { "question": "How many goals did Luis Figo score for Real Madrid in LALIGA EA SPORTS?", "answer": "38" },
-  { "question": "How many appearances in total did Zinedine Zidane make for Real Madrid in LALIGA EA SPORTS?", "answer": "155" },
-  { "question": "Who wore the captain’s armband for Real Madrid in the 2002 UEFA Champions league final?", "answer": "Fernando Hierro" },
-  { "question": "Which of these players did not start in the 2002 UEFA Champions League final?", "answer": "Iker Casillas" },
-  { "question": "What shirt number did David Beckham wear when he joined Real Madrid?", "answer": "23" },
-  { "question": "Who was Real Madrid’s top scorer in the 2003-2004 season?", "answer": "Ronaldo Nazario" },
-  { "question": "What were the players signed by Real Madrid known as?", "answer": "Galacticos" },
-  { "question": "Which team did Michael Owen leave Real Madrid for?", "answer": "Newcastle United" },
-  { "question": "How many LALIGA titles did Real Madrid win between 2000-2006?", "answer": "2" },
-  { "question": "Which of these season’s did Ronaldo Nazario win the top goalscorer award in LALIGA EA SPORTS?", "answer": "2003-2004" },
-  { "question": "In what year did Zinedine Zidane join Real Madrid?", "answer": "2001" },
-  { "question": "Who scored the winning goal in the 2002 UEFA Champions League final?", "answer": "Zinedine Zidane" },
-  { "question": "Which player scored a hat-trick in the 2001 Spanish Super Cup second leg?", "answer": "Raul" },
-  { "question": "Which team did Real Madrid sign Sergio Ramos from?", "answer": "Sevilla FC" },
-  { "question": "What was the position did Real Madrid finish in the 2004-2005 LALIGA EA SPORTS season?", "answer": "2nd" },
-  { "question": "Who did Real Madrid face in the 2002 UEFA Super Cup?", "answer": "Feyenoord" },
-  { "question": "How old was Zinedine Zidane when he retired from football? ", "answer": "34" },
-  { "question": "Which club did Real Madrid defeat in the 2003 Spanish Super Cup?", "answer": "RCD Mallorca" },
-  { "question": "Who was the first signing signed by Real Madrid in the Galacticos era in 2000?", "answer": "Luis Figo" },
-  { "question": "How many goals did Ronaldo Nazario score in the 2002-2003 season for Real Madrid?", "answer": "30" },
-  { "question": "What position did David Beckham primarily play at Real Madrid?", "answer": "Midfielder" },
-  { "question": "How many different trophies did Real Madrid win the 2002-2003 season?", "answer": "3" },
-  { "question": "What number did Ronaldo Nazario wear at Real Madrid?", "answer": "9" },
-  { "question": "Who did Real Madrid sign Claude Makelele from?", "answer": "RC Celta" },
-  { "question": "In what year did Ronaldo Nazario win the Ballon d’Or while at Real Madrid?", "answer": "2002" },
-  { "question": "How many goals did Raul score in the 2000-2001 season?", "answer": "32" },
-  { "question": "How many goals did Ronaldo Nazario score for Real Madrid?", "answer": "104" },
-  { "question": "Which manager led Real Madrid to the 2002 UEFA Champions title?", "answer": "Vicente del Bosque" },
-  { "question": "Which player retired at Real Madrid in 2006?", "answer": "Zinedine Zidane" },
-  { "question": "How many trophies did Real Madrid win between 2000 and 2006?", "answer": "7" },
-  { "question": "Which player did Liverpool sign from Southampton in 2005?", "answer": "Peter Crouch" },
-  { "question": "Which of these numbers did Steven Gerrard not wear for Liverpool?", "answer": "10" },
-  { "question": "Who was Liverpool’s manager at the start of the 2004-2005 season?", "answer": "Rafael Benitez" },
-  { "question": "How many goals did Fernando Torres score in the 2007-2008 Premier League season?", "answer": "24" },
-  { "question": "How many goals did Steven Gerrard score in the 2005-2006 season for Liverpool?", "answer": "23" },
-  { "question": "When was the last time Liverpool played in a European final before the 2005 UEFA Champions League final?", "answer": "1985" },
-  { "question": "In which competition did Liverpool win their first trophy under Rafael Benitez?", "answer": "UEFA Champions League" },
-  { "question": "In which year did Liverpool reach the Champions League final again after winning in 2005?", "answer": "2007" },
-  { "question": "How many hat-tricks did Fernando Torres score in his debut season for Liverpool?", "answer": "3" },
-  { "question": "Who was Liverpool’s manager before Rafael Benitez?", "answer": "Gerard Houllier" },
-  { "question": "What was Liverpool’s 2005 UEFA Champions League victory also known as?", "answer": "Miracle of Istanbul" },
-  { "question": "Which of these players did not start in the final of the 2005 UEFA Champions League final?", "answer": "Vladimir Smicer" },
-  { "question": "Which player did Liverpool sign from Villarreal CF in 2005?", "answer": "Pepe Reina" },
-  { "question": "Who scored Liverpool’s equalizer in the 2005 UEFA Champions League final?", "answer": "Xabi Alonso" },
-  { "question": "Who did Liverpool face in the semi-finals of the 2007 UEFA Champions League?", "answer": "Chelsea" },
-  { "question": "Who was Rafael Benitez first signing as Liverpool’s manager?", "answer": "Josemi" },
-  { "question": "Who was Liverpool’s goalkeeper in the 2005 Champions League final?", "answer": "Jerzy Dudek" },
-  { "question": "What number did Pepe Reina wear for Liverpool?", "answer": "25" },
-  { "question": "What was the final score of the 2006 Community Shield match?", "answer": "Liverpool 2 – 1 Chelsea" },
-  { "question": "Who was Liverpool’s captain during their 2005 UEFA Champions League triumph?", "answer": "Steven Gerrard" },
-  { "question": "How many goals did Peter Crouch score for Liverpool in the 2006-2007 season?", "answer": "18" },
-  { "question": "Who scored Liverpool’s first goal in the 2005 UEFA Champions League final?", "answer": "Steven Gerrard" },
-  { "question": "Who did Liverpool defeat in the 2006 FA CUP final?", "answer": "West Ham United" },
-  { "question": "Which team did Liverpool face in the 2006 Community Shield?", "answer": "Chelsea" },
-  { "question": "Who scored the winning goal in the 2006 Community Shield between Liverpool and Chelsea?", "answer": "Peter Crouch" },
-  { "question": "Who scored Liverpool’s equalizer in the 2006 FA CUP final?", "answer": "Steven Gerrard" },
-  { "question": "Who did Liverpool sign from Atletico de Madrid in the 2007 summer transfer window?", "answer": "Fernando Torres" },
-  { "question": "What was the score in the 2005 UEFA Super Cup match?", "answer": "Liverpool 3 – 1 CSKA Moskva" },
-  { "question": "From which club did Liverpool sign Javier Mascherano?", "answer": "West Ham United" },
-  { "question": "Who did Liverpool defeat in the semi-finals of the 2004-2005 UEFA Champions League?", "answer": "Chelsea" },
-  { "question": "Who was Liverpool’s top goalscorer in the 2005-2006 season?", "answer": "Steven Gerrard" },
-  { "question": "How many seasons did Rafael Benitez manage Liverpool for?", "answer": "6" },
-  { "question": "Which player did Liverpool sign from Real Sociedad in the 2004 summer transfer windows?", "answer": "Xabi Alonso" },
-  { "question": "Whose penalty did Jerzy Dudek save to secure the 2005 UEFA Champions League for Liverpool?", "answer": "Andriy Shevchenko" },
-  { "question": "Who did Liverpool face in the UEFA Super Cup in 2005?", "answer": "CSKA Moskva" },
-  { "question": "How many trophies did Rafael Benitez win at Liverpool?", "answer": "3 to 4 trophies" },
-  { "question": "Where was the 2007 UEFA Champions League final held?", "answer": "Olympic Stadium" },
-  { "question": "In which stadium did Liverpool win the 2005 UEFA Champions League final?", "answer": "Atatürk Olympic Stadium" },
-  { "question": "Who scored Liverpool’s only goal in the 2007 Champions League final?", "answer": "Dirk Kuyt" },
-  { "question": "Which of these players did not score in the finals of the 2005 UEFA Champions League?", "answer": "John Arne Riise" },
-  { "question": "Who was Liverpool’s top goalscorer in the 2004-2005 season?", "answer": "Milan Baros" },
-  { "question": "In which year did Liverpool win the UEFA Champions League under Rafael Benitez?", "answer": "2005" },
-  { "question": "Who wore Liverpool’s captain armband during the 2006 FA Cup Final?", "answer": "Steven Gerrard" }
+  {
+    "question": "Who won the Premier League Manager of the Month award for August?",
+    "answer": "Arne Slot"
+  },
+  {
+    "question": "What is the name of Crystal Palace’s stadium?",
+    "answer": "Selhurst Park"
+  },
+  {
+    "question": "Which of these teams has played in every season of the Premier League?",
+    "answer": "Everton"
+  },
+  {
+    "question": "Who is the first player to score a hat-trick as a substitute in the Premier League?",
+    "answer": "Ole Gunnar Solskjaer"
+  },
+  {
+    "question": "How many clean sheets did Peter Schmeichel keep in the Premier League?",
+    "answer": "128"
+  },
+  {
+    "question": "What is the name of Fulham’s stadium?",
+    "answer": "Craven Cottage"
+  },
+  {
+    "question": "Which active Premier League player has the most appearances in the Premier League?",
+    "answer": "James Milner"
+  },
+  {
+    "question": "Who has the record for the longest scoring streak in Premier League history?",
+    "answer": "Jamie Vardy"
+  },
+  {
+    "question": "Which two teams are involved in the Tyne-Wear Derby?",
+    "answer": "Sunderland, Newcastle United"
+  },
+  {
+    "question": "Who is the youngest player to have reach the 100 goal milestone in the Premier League?",
+    "answer": "Michael Owen"
+  },
+  {
+    "question": "Which club is nicknamed “The Villans”?",
+    "answer": "Aston Villa"
+  },
+  {
+    "question": "Which club plays its home matches at Anfield?",
+    "answer": "Liverpool"
+  },
+  {
+    "question": "How many Premier League titles does Manchester United have?",
+    "answer": "13"
+  },
+  {
+    "question": "Who is Liverpool’s all-time leading goal scorer?",
+    "answer": "Ian Rush"
+  },
+  {
+    "question": "Which club is nicknamed “The Blues”?",
+    "answer": "Chelsea"
+  },
+  {
+    "question": "How many Premier League teams are competing in European competitions this season?",
+    "answer": "9"
+  },
+  {
+    "question": "Who is the manager of Sunderland?",
+    "answer": "Regis Le Bris"
+  },
+  {
+    "question": "Who is the captain of Burnley?",
+    "answer": "Josh Cullen"
+  },
+  {
+    "question": "How long is the record streak for a player scoring in consecutive Premier League games?",
+    "answer": "11"
+  },
+  {
+    "question": "How many games does each team play in a Premier League season?",
+    "answer": "38"
+  },
+  {
+    "question": "How many goals and assist did Mohamed Salah achieve in the 2024/25 season?",
+    "answer": "47"
+  },
+  {
+    "question": "What is the record for fewest points in a season while winning the Premier League?",
+    "answer": "75"
+  },
+  {
+    "question": "Which active Premier League player has scored the most goals in the Premier League?",
+    "answer": "Mohamed Salah"
+  },
+  {
+    "question": "How many Premier League matches have been played on Christmas Eve?",
+    "answer": "2"
+  },
+  {
+    "question": "Who is Wolverhampton Wanderer’s all-time Premier League top goalscorer?",
+    "answer": "Raul Jimenez"
+  },
+  {
+    "question": "Who is the captain of Manchester United?",
+    "answer": "Bruno Fernandes"
+  },
+  {
+    "question": "Who scored the fastest goal in the Premier League as a substitute?",
+    "answer": "Nicklas Bendtner"
+  },
+  {
+    "question": "Which club is nicknamed “The Cottagers”?",
+    "answer": "Fulham"
+  },
+  {
+    "question": "Who is Leeds United’s all-time Premier League top goalscorer?",
+    "answer": "Mark Viduka"
+  },
+  {
+    "question": "How many goals did Thierry Henry score for Arsenal in the Premier League?",
+    "answer": "175"
+  },
+  {
+    "question": "Which club plays its home matches at American Express Stadium?",
+    "answer": "Brighton & Hove Albion"
+  },
+  {
+    "question": "Who is the manager of Arsenal?",
+    "answer": "Mikel Arteta"
+  },
+  {
+    "question": "Who won the Premier League Player of the Month award for October?",
+    "answer": "Bryan Mbeumo"
+  },
+  {
+    "question": "Who is the captain of Aston Villa?",
+    "answer": "John McGinn"
+  },
+  {
+    "question": "Who is the captain of Brighton & Hove Albion?",
+    "answer": "Lewis Dunk"
+  },
+  {
+    "question": "Who is the youngest goalscorer in the Premier League?",
+    "answer": "James Vaughan"
+  },
+  {
+    "question": "What is the most clean sheets kept by a goalkeeper in one Premier League season?",
+    "answer": "24"
+  },
+  {
+    "question": "What was the number of Premier League matches scheduled for Boxing Day this season?",
+    "answer": "1"
+  },
+  {
+    "question": "Who is the oldest manager to have managed in the Premier League?",
+    "answer": "Roy Hodgson"
+  },
+  {
+    "question": "How many games did Arsene Wenger manage in the Premier League?",
+    "answer": "828"
+  },
+  {
+    "question": "Who was the inaugural winner of the Premier League when it was formed?",
+    "answer": "Manchester United"
+  },
+  {
+    "question": "Who holds the record for the most expensive Premier League transfer?",
+    "answer": "Alexander Isak"
+  },
+  {
+    "question": "How many Premier League titles does Arsenal have?",
+    "answer": "3"
+  },
+  {
+    "question": "How many teams from London compete in the Premier League?",
+    "answer": "7"
+  },
+  {
+    "question": "Who holds the record for the most consecutive appearances in the Premier League?",
+    "answer": "Brad Friedel"
+  },
+  {
+    "question": "Which club is nicknamed “The Seagulls”?",
+    "answer": "Brighton & Hove Albion"
+  },
+  {
+    "question": "Which team won the Premier League title with the best defensive record in a season?",
+    "answer": "Chelsea"
+  },
+  {
+    "question": "What is the last match of the 2025/26 Premier League festive fixture schedule?",
+    "answer": "Manchester City vs Chelsea"
+  },
+  {
+    "question": "Which goalkeeper holds the record for most consecutive clean sheets in the Premier League?",
+    "answer": "Edwin van der Sar"
+  },
+  {
+    "question": "Who is Brentford’s all-time Premier League goalscorer?",
+    "answer": "Yoane Wissa"
+  },
+  {
+    "question": "What is the derby between Arsenal and Tottenham Hotspur called?",
+    "answer": "North London Derby"
+  },
+  {
+    "question": "Who is Sunderland’s all-time Premier League top goalscorer?",
+    "answer": "Kevin Phillips"
+  },
+  {
+    "question": "Who is the captain of Tottenham Hotspur?",
+    "answer": "Cristian Romero"
+  },
+  {
+    "question": "Who is the captain of Everton?",
+    "answer": "Seamus Coleman"
+  },
+  {
+    "question": "Who scored the fastest hat-trick in Premier League history?",
+    "answer": "Sadio Mane"
+  },
+  {
+    "question": "Who is the only goalkeeper to have won the Premier League Player of the Season award?",
+    "answer": "Peter Schmeichel"
+  },
+  {
+    "question": "How many teams have won the Premier League by going unbeaten in the Premier League?",
+    "answer": "1"
+  },
+  {
+    "question": "What is the derby between Manchester United and Manchester City called?",
+    "answer": "Manchester Derby"
+  },
+  {
+    "question": "What is the name of Brentford’s stadium?",
+    "answer": "Gtech Community Stadium"
+  },
+  {
+    "question": "Which team plays their home matches at Villa Park?",
+    "answer": "Aston Villa"
+  },
+  {
+    "question": "Which club is nicknamed “The Reds”?",
+    "answer": "Liverpool"
+  },
+  {
+    "question": "Who is Brighton & Hove Albion’s all-time Premier League top goalscorer?",
+    "answer": "Danny Wellbeck"
+  },
+  {
+    "question": "Who is the captain of Manchester City?",
+    "answer": "Bernardo Silva"
+  },
+  {
+    "question": "Which club plays its home matches at St. James’ Park?",
+    "answer": "Newcastle United"
+  },
+  {
+    "question": "What is the longest unbeaten home run in the Premier League?",
+    "answer": "86"
+  },
+  {
+    "question": "Who won the Premier League Player of the Month award for September?",
+    "answer": "Erling Haaland"
+  },
+  {
+    "question": "What is the most goals scored by one player in a single Premier League season?",
+    "answer": "36"
+  },
+  {
+    "question": "How many Welsh clubs have competed in the Premier League?",
+    "answer": "2"
+  },
+  {
+    "question": "Who is the manager of Fulham?",
+    "answer": "Marco Silva"
+  },
+  {
+    "question": "Where does Tottenham Hotspur play their home games?",
+    "answer": "Tottenham Hotspur stadium"
+  },
+  {
+    "question": "Who is the highest scoring midfielder in Premier League history?",
+    "answer": "Frank Lampard"
+  },
+  {
+    "question": "How many seasons has Pep Guardiola been the manager of Manchester City (including this season)?",
+    "answer": "10"
+  },
+  {
+    "question": "In which year was the Premier League founded?",
+    "answer": "1992"
+  },
+  {
+    "question": "How many matches will each team play over the 2025/26 Premier League festive fixture?",
+    "answer": "4"
+  },
+  {
+    "question": "Who is the manager of Newcastle United?",
+    "answer": "Eddie Howe"
+  },
+  {
+    "question": "Which team holds the record for the most total goals scored in a single Premier League season?",
+    "answer": "Manchester City"
+  },
+  {
+    "question": "How many goalkeepers have scored a goal in the Premier League?",
+    "answer": "6"
+  },
+  {
+    "question": "Who is the manager of Nottingham Forest?",
+    "answer": "Sean Dyche"
+  },
+  {
+    "question": "Which of these teams won the Premier League undefeated?",
+    "answer": "Arsenal"
+  },
+  {
+    "question": "Which team has the record for the most points in a single Premier League season?",
+    "answer": "Manchester City"
+  },
+  {
+    "question": "Who is the only player to have scored for seven different clubs in the Premier League?",
+    "answer": "Craig Bellamy"
+  },
+  {
+    "question": "What was Arsenal’s unbeaten Premier League title-winning season known as?",
+    "answer": "The Invincibles"
+  },
+  {
+    "question": "What is the record for the most consecutive Premier League games played by a player?",
+    "answer": "310"
+  },
+  {
+    "question": "Who is the captain of Brentford?",
+    "answer": "Nathan Collins"
+  },
+  {
+    "question": "How long is the longest unbeaten run in the Premier League?",
+    "answer": "49"
+  },
+  {
+    "question": "Which of these matches has been played on Christmas Eve in the Premier League?",
+    "answer": "Wolverhampton Wanderers vs Chelsea"
+  },
+  {
+    "question": "Who has played for the most Premier League teams?",
+    "answer": "Marcus Bent"
+  },
+  {
+    "question": "Including the current season, how many Premier League seasons have been played?",
+    "answer": "34"
+  },
+  {
+    "question": "Who is the captain of Crystal Palace?",
+    "answer": "Marc Guehi"
+  },
+  {
+    "question": "Who is the captain of Leeds United?",
+    "answer": "Ethan Ampadu"
+  },
+  {
+    "question": "Who scored the first goal of the 2025/26 Premier League season?",
+    "answer": "Hugo Ekitike"
+  },
+  {
+    "question": "How many total appearances did Peter Schmeichel make in the Premier League?",
+    "answer": "310"
+  },
+  {
+    "question": "What is the record for the most Premier League Golden Boot awards won by a player?",
+    "answer": "4"
+  },
+  {
+    "question": "How many different teams have played in the Premier League?",
+    "answer": "51"
+  },
+  {
+    "question": "What is the biggest title-winning margin in the Premier League?",
+    "answer": "19 Points"
+  },
+  {
+    "question": "Who is Chelsea’s all-time Premier League top goalscorer?",
+    "answer": "Frank Lampard"
+  },
+  {
+    "question": "How many clean sheets did Chelsea keep in their title winning 2004/05 season?",
+    "answer": "25"
+  },
+  {
+    "question": "How many games did Erling Haaland take to score 100 goals in the Premier League?",
+    "answer": "111"
+  },
+  {
+    "question": "Who is Tottenham Hotspur’s all-time Premier League top goalscorer?",
+    "answer": "Harry Kane"
+  },
+  {
+    "question": "Who is Aston Villa’s all-time Premier League top goalscorer?",
+    "answer": "Ollie Watkins"
+  },
+  {
+    "question": "How fast was the fastest goal scored by a substitute in the Premier League?",
+    "answer": "6 seconds"
+  },
+  {
+    "question": "How many goals did Chelsea concede in their title winning 2004/05 season?",
+    "answer": "15"
+  },
+  {
+    "question": "Which player holds the record for most hat-tricks in Premier League history?",
+    "answer": "Sergio Aguero"
+  },
+  {
+    "question": "What is Wolverhampton Wanderer’s nickname?",
+    "answer": "Wolves"
+  },
+  {
+    "question": "What is Newcastle United’s nickname?",
+    "answer": "The Magpies"
+  },
+  {
+    "question": "Who is West Ham United’s all-time Premier League top goalscorer?",
+    "answer": "Michail Antonio"
+  },
+  {
+    "question": "Who is the captain of Wolverhampton Wanderers?",
+    "answer": "Toti Gomes"
+  },
+  {
+    "question": "Who is the captain of Newcastle United?",
+    "answer": "Bruno Guimaraes"
+  },
+  {
+    "question": "Who is the manager of Brentford?",
+    "answer": "Keith Andrews"
+  },
+  {
+    "question": "What is the record for most assists in the Premier League?",
+    "answer": "162"
+  },
+  {
+    "question": "Who is the captain of Nottingham Forest?",
+    "answer": "Ryan Yates"
+  },
+  {
+    "question": "Who is the longest serving manager in the Premier League right now?",
+    "answer": "Pep Guardiola"
+  },
+  {
+    "question": "Which of these teams has Scott Parker not managed in the Premier League?",
+    "answer": "Tottenham Hotspur"
+  },
+  {
+    "question": "What is the name of Manchester City’s stadium?",
+    "answer": "Etihad Stadium"
+  },
+  {
+    "question": "How many Premier League titles has Manchester City won?",
+    "answer": "8"
+  },
+  {
+    "question": "Who is the manager of Aston Villa?",
+    "answer": "Unai Emery"
+  },
+  {
+    "question": "Who is Everton’s all-time Premier League top goalscorer?",
+    "answer": "Romelu Lukaku"
+  },
+  {
+    "question": "What is the record for the most Premier League Golden Glove awards won by a goalkeeper?",
+    "answer": "4"
+  },
+  {
+    "question": "Who is the captain of Fulham?",
+    "answer": "Tom Cairney"
+  },
+  {
+    "question": "Who is the manager of Manchester United?",
+    "answer": "Ruben Amorim"
+  },
+  {
+    "question": "Which club is nicknamed “The Gunners”?",
+    "answer": "Arsenal"
+  },
+  {
+    "question": "Who is the oldest player to have played in the Premier League?",
+    "answer": "John Burridge"
+  },
+  {
+    "question": "Who won the Premier League Player of the Month award for August?",
+    "answer": "Jack Grealish"
+  },
+  {
+    "question": "What is the record for most consecutive Premier League wins by a team?",
+    "answer": "18"
+  },
+  {
+    "question": "Which team has won the most Premier League titles?",
+    "answer": "Manchester United"
+  },
+  {
+    "question": "Which of these teams played in the first season of the Premier League?",
+    "answer": "Aston Villa"
+  },
+  {
+    "question": "Which Premier League team has the nickname “The Eagles”?",
+    "answer": "Crystal Palace"
+  },
+  {
+    "question": "What is the Premier League’s all-time goal scoring record?",
+    "answer": "260"
+  },
+  {
+    "question": "Which of these teams were promoted into the Premier League this season?",
+    "answer": "Burnley"
+  },
+  {
+    "question": "How many Premier League titles has Liverpool won?",
+    "answer": "2"
+  },
+  {
+    "question": "How many English managers have won the Premier League title?",
+    "answer": "0"
+  },
+  {
+    "question": "Who has managed the most Premier League teams?",
+    "answer": "Sam Allardyce"
+  },
+  {
+    "question": "How many matches are scheduled to be played during the 2025/26 Premier League festive fixture?",
+    "answer": "40"
+  },
+  {
+    "question": "Who holds the record for the longest-serving manager in Premier League history?",
+    "answer": "Arsene Wenger"
+  },
+  {
+    "question": "What was Manchester City’s 2017/18 title-winning season known as?",
+    "answer": "Centurions"
+  },
+  {
+    "question": "What is the most consecutive Premier League title wins?",
+    "answer": "4"
+  },
+  {
+    "question": "Who is the only defender to have won the Player of the Season award multiple times (2 or more)?",
+    "answer": "Nemanja Vidic"
+  },
+  {
+    "question": "Who is Bournemouth’s all-time Premier League top goalscorer?",
+    "answer": "Joshua King"
+  },
+  {
+    "question": "Which Premier League team plays at the London Stadium?",
+    "answer": "West Ham United"
+  },
+  {
+    "question": "Who is the manager of Burnley?",
+    "answer": "Scott Parker"
+  },
+  {
+    "question": "Who is the only player to have scored five goals in a single half of a Premier League match?",
+    "answer": "Jermain Defoe"
+  },
+  {
+    "question": "Who is the manager of Brighton & Hove Albion?",
+    "answer": "Fabian Hurzeler"
+  },
+  {
+    "question": "Who are the current defending champions of the Premier League?",
+    "answer": "Liverpool"
+  },
+  {
+    "question": "How many players have won the Player of the Season award multiple times (2 or more)?",
+    "answer": "5"
+  },
+  {
+    "question": "What is the name of Sunderland’s stadium?",
+    "answer": "Stadium of Light"
+  },
+  {
+    "question": "Which player holds the record for the quickest goal scored in Premier League history (7.69 seconds)?",
+    "answer": "Shane Long"
+  },
+  {
+    "question": "Who is the captain of Chelsea?",
+    "answer": "Reece James"
+  },
+  {
+    "question": "Who is Manchester City’s all-time top scorer?",
+    "answer": "Sergio Aguero"
+  },
+  {
+    "question": "Who is the captain of Liverpool?",
+    "answer": "Virgil van Dijk"
+  },
+  {
+    "question": "Who scored the first hat-trick of the Premier League era?",
+    "answer": "Eric Cantona"
+  },
+  {
+    "question": "Who is the Premier League’s all-time top scorer?",
+    "answer": "Alan Shearer"
+  },
+  {
+    "question": "Where does Nottingham Forest play their home games?",
+    "answer": "City Ground"
+  },
+  {
+    "question": "How many teams are relegated from the Premier League each season?",
+    "answer": "3"
+  },
+  {
+    "question": "What is Tottenham Hotspur’s nickname?",
+    "answer": "The Lilywhites"
+  },
+  {
+    "question": "How many players have scored 100 goals or more in Premier League history?",
+    "answer": "35"
+  },
+  {
+    "question": "Which team won the Premier League four times in a row?",
+    "answer": "Manchester City"
+  },
+  {
+    "question": "Who is the manager of Leeds United?",
+    "answer": "Daniel Farke"
+  },
+  {
+    "question": "Which Premier League team has the nickname “The Garibaldis”?",
+    "answer": "Nottingham Forest"
+  },
+  {
+    "question": "Which club is nicknamed “The Clarets”?",
+    "answer": "Burnley"
+  },
+  {
+    "question": "Who is the captain of West Ham United?",
+    "answer": "Jarred Bowen"
+  },
+  {
+    "question": "Who was the top goalscorer in the Premier League last season?",
+    "answer": "Mohamed Salah"
+  },
+  {
+    "question": "Where does Manchester United play their home games?",
+    "answer": "Old Trafford"
+  },
+  {
+    "question": "What is the most number of wins achieved by a team in a single Premier League season?",
+    "answer": "32"
+  },
+  {
+    "question": "What is the most number of goals scored by a player in a single Premier League match?",
+    "answer": "5"
+  },
+  {
+    "question": "Who is Arsenal’s all-time Premier League top goalscorer?",
+    "answer": "Thierry Henry"
+  },
+  {
+    "question": "How many games did it take for Erling Haaland to score three hat-tricks in the Premier League?",
+    "answer": "8"
+  },
+  {
+    "question": "What is the nickname of Leeds United?",
+    "answer": "The Whites"
+  },
+  {
+    "question": "Who is the manager of Bournemouth?",
+    "answer": "Andoni Iraola"
+  },
+  {
+    "question": "What is the Premier League’s all-time clean sheet record?",
+    "answer": "202"
+  },
+  {
+    "question": "What is the record for most Premier League assists in a season?",
+    "answer": "20"
+  },
+  {
+    "question": "Which player currently playing in the Premier League has scored the most goals in the Premier League?",
+    "answer": "Mohamed Salah"
+  },
+  {
+    "question": "Who is Crystal Palace’s all-time Premier League top goalscorer?",
+    "answer": "Wilfried Zaha"
+  },
+  {
+    "question": "What is the oldest stadium in the Premier League this season?",
+    "answer": "Stamford Bridge"
+  },
+  {
+    "question": "What is the first match to kick off the 2025/26 Premier League festive fixtures?",
+    "answer": "Chelsea vs Newcastle United"
+  },
+  {
+    "question": "Who is the captain of Arsenal?",
+    "answer": "Martin Odegaard"
+  },
+  {
+    "question": "How many teams compete in the Premier League each season?",
+    "answer": "20"
+  },
+  {
+    "question": "What is the highest number of goals scored by a player in a single Premier League season?",
+    "answer": "36"
+  },
+  {
+    "question": "Who scored the first goal in the Premier League?",
+    "answer": "Brian Diane"
+  },
+  {
+    "question": "Who is the goalkeeper with the most assists in the Premier League?",
+    "answer": "Ederson"
+  },
+  {
+    "question": "Who is Fulham’s all-time leading Premier League goalscorer?",
+    "answer": "Clint Dempsey"
+  },
+  {
+    "question": "What is the record for the most consecutive Premier League games played by an outfield player?",
+    "answer": "164"
+  },
+  {
+    "question": "Which club plays its home games at Stamford Bridge?",
+    "answer": "Chelsea"
+  },
+  {
+    "question": "Which stadium in the Premier League has the largest capacity",
+    "answer": "Old Trafford"
+  },
+  {
+    "question": "Which team uses “You’ll Never Walk Alone” as a motto?",
+    "answer": "Liverpool"
+  },
+  {
+    "question": "Which team holds the record for the largest Premier League title-winning margin?",
+    "answer": "Manchester City"
+  },
+  {
+    "question": "Where did Everton play their home games before moving to their new stadium?",
+    "answer": "Goodison Park"
+  },
+  {
+    "question": "Which club is nicknamed “The Hammers”?",
+    "answer": "West Ham United"
+  },
+  {
+    "question": "Who is the youngest manager to have managed in the Premier League?",
+    "answer": "Ryan Mason"
+  },
+  {
+    "question": "Who is the manager of Everton?",
+    "answer": "David Moyes"
+  },
+  {
+    "question": "Who is the other goalkeeper besides Petr Cech to have won the most Premier League Golden Glove awards?",
+    "answer": "Joe Hart"
+  },
+  {
+    "question": "Who is the manager of Chelsea?",
+    "answer": "Enzo Maresca"
+  },
+  {
+    "question": "Who holds the record for the most clean sheets in Premier League history?",
+    "answer": "Petr Cech"
+  },
+  {
+    "question": "Who is the other player besides Mohamed Salah to have won the most Premier League Golden Boot awards?",
+    "answer": "Thierry Henry"
+  },
+  {
+    "question": "Where does Leeds play their home games?",
+    "answer": "Elland Road"
+  },
+  {
+    "question": "How many teams competed during the first-ever Premier League season?",
+    "answer": "22"
+  },
+  {
+    "question": "Which Premier League team plays at the Emirates Stadium?",
+    "answer": "Arsenal"
+  },
+  {
+    "question": "Who is Nottingham Forest’s all-time Premier League top goalscorer?",
+    "answer": "Chris Wood"
+  },
+  {
+    "question": "Who scored the first hat-trick of the 2025/26 Premier League season?",
+    "answer": "Jean-Philippe Mateta"
+  },
+  {
+    "question": "Which club is nicknamed “The Toffees”?",
+    "answer": "Everton"
+  },
+  {
+    "question": "Who is Burnley’s all-time Premier League top goalscorer?",
+    "answer": "Chris Wood"
+  },
+  {
+    "question": "Which club is nicknamed “The Black Cats”?",
+    "answer": "Sunderland"
+  },
+  {
+    "question": "Who is the manager of Crystal Palace?",
+    "answer": "Oliver Glasner"
+  },
+  {
+    "question": "Who is the captain of Bournemouth?",
+    "answer": "Adam Smith"
+  },
+  {
+    "question": "Who won the Premier League Manager of the Month award for September?",
+    "answer": "Oliver Glasner"
+  },
+  {
+    "question": "Who won the Premier League Manager of the Month award for October?",
+    "answer": "Ruben Amorim"
+  },
+  {
+    "question": "Which goalkeeper has saved the most penalties?",
+    "answer": "David James"
+  },
+  {
+    "question": "Which player has won the most Premier League titles?",
+    "answer": "Ryan Giggs"
+  },
+  {
+    "question": "What is the longest consecutive scoring streak in the Premier League?",
+    "answer": "55"
+  },
+  {
+    "question": "Who was the manager that led Chelsea to the 2004/05 Premier League title?",
+    "answer": "Jose Mourinho"
+  },
+  {
+    "question": "What was the first match of the 2025/26 Premier League season?",
+    "answer": "Liverpool vs Bournemouth"
+  },
+  {
+    "question": "Where does Bournemouth play their home games?",
+    "answer": "Vitality Stadium"
+  },
+  {
+    "question": "Which of these matches will be the first Premier League match of 2026?",
+    "answer": "Liverpool vs Leeds United"
+  },
+  {
+    "question": "Who scored the title-winning goal for Manchester City against Queens Park Rangers in the 2011/12 Premier League season?",
+    "answer": "Sergio Aguero"
+  },
+  {
+    "question": "Which club famously won the Premier League title on goal difference in 2011/12?",
+    "answer": "Manchester City"
+  },
+  {
+    "question": "Which of these matches will not be played during the 2025/26 Premier League festive fixture?",
+    "answer": "Newcastle United vs Brentford"
+  },
+  {
+    "question": "Who is the manager of West Ham United?",
+    "answer": "Nuno Espirito Santo"
+  },
+  {
+    "question": "How many Premier League titles has Chelsea won?",
+    "answer": "5"
+  },
+  {
+    "question": "Where does Burnley play their home games?",
+    "answer": "Turf Moor"
+  },
+  {
+    "question": "Which player mode the most appearances in the Premier League for a single club?",
+    "answer": "Ryan Giggs"
+  },
+  {
+    "question": "Who is Newcastle United’s all-time leading Premier League goalscorer?",
+    "answer": "Alan Shearer"
+  },
+  {
+    "question": "What is Manchester United’s nickname?",
+    "answer": "The Red Devils"
+  },
+  {
+    "question": "What is the name of Wolverhampton Wanderer’s stadium?",
+    "answer": "Molineux Stadium"
+  },
+  {
+    "question": "How many goals did Thierry Henry score for Arsenal in the 2003/04 Premier League season?",
+    "answer": "30"
+  },
+  {
+    "question": "Which of these players have appeared in the most Premier League seasons?",
+    "answer": "James Milner"
+  },
+  {
+    "question": "What is the most assist by a goalkeeper?",
+    "answer": "7"
+  },
+  {
+    "question": "Who is the captain of Sunderland?",
+    "answer": "Granit Xhaka"
+  },
+  {
+    "question": "Who is the all-time leading assist maker in Premier League history?",
+    "answer": "Ryan Giggs"
+  },
+  {
+    "question": "Who is the manager of Liverpool?",
+    "answer": "Arne Slot"
+  },
+  {
+    "question": "Which manager has won the most Premier League titles?",
+    "answer": "Sir Alex Ferguson"
+  },
+  {
+    "question": "What is Bournemouth’s nickname?",
+    "answer": "The Cherries"
+  },
+  {
+    "question": "How many players have scored more than 200 goals in Premier League history?",
+    "answer": "3"
+  },
+  {
+    "question": "How many teams have never been relegated from the Premier League since its inception?",
+    "answer": "6"
+  },
+  {
+    "question": "What is the most number of goals scored by a team in a Premier League season?",
+    "answer": "106"
+  },
+  {
+    "question": "How many total appearances did Alan Shearer make in the Premier League?",
+    "answer": "441"
+  },
+  {
+    "question": "Who holds the record for the oldest outfield player to score a Premier League goal?",
+    "answer": "Teddy Sheringham"
+  },
+  {
+    "question": "Who is the manager of Wolverhampton Wanderers?",
+    "answer": "Rob Edwards"
+  },
+  {
+    "question": "How many Premier League teams have successfully completed and won the treble?",
+    "answer": "2"
+  },
+  {
+    "question": "What is the first Premier League season played with 20 teams?",
+    "answer": "1995/96"
+  },
+  {
+    "question": "What is Brentford’s nickname?",
+    "answer": "The Bees"
+  },
+  {
+    "question": "How many different teams have won the Premier League?",
+    "answer": "7"
+  }
 ];
